@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) {
 
         TaskRepository task = new TaskRepository();
-        task.createTask("Prezenty",
+        task.createTask("Noty",
                 LocalDate.of(2021,12,6),
                 Priority.HIGH,
                 Category.SOCIAL_LIFE,

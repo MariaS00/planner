@@ -2,9 +2,8 @@ package com.example.planner.main;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +17,10 @@ public class User {
     @Id
     private UUID userId;
     private String name;
+
+    @OneToMany  // cascade?
+    @JoinColumn
+    private List<Task> tasks;
 
     public User(@NonNull String name) {
         this.userId = UUID.randomUUID();
