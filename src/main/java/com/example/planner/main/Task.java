@@ -1,18 +1,21 @@
 package com.example.planner.main;
 
-import lombok.AllArgsConstructor;
-import lombok.Setter;
-import lombok.Value;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
 @Table
-@Value
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @AllArgsConstructor
 public class Task {
 
@@ -22,10 +25,32 @@ public class Task {
     private LocalDateTime taskDateAndTime;
     private Priority taskPriority;
     private Category taskCategory;
-
-
-    private User user;
     private String description;
 
+    public Task(@NonNull String taskTitle,
+                @NonNull LocalDateTime taskDateAndTime,
+                @NonNull Priority taskPriority,
+                @NonNull Category taskCategory,
+                @NonNull String description) {
+        this.taskId = UUID.randomUUID();
+        this.taskTitle = taskTitle;
+        this.taskDateAndTime = taskDateAndTime;
+        this.taskPriority = taskPriority;
+        this.taskCategory = taskCategory;
+        this.description = description;
+    }
 
+    public Task(@NonNull String taskTitle,
+                @NonNull LocalDateTime taskDateAndTime,
+                @NonNull Priority taskPriority,
+                @NonNull Category taskCategory) {
+        this.taskId = UUID.randomUUID();
+        this.taskTitle = taskTitle;
+        this.taskDateAndTime = taskDateAndTime;
+        this.taskPriority = taskPriority;
+        this.taskCategory = taskCategory;
+    }
+
+    public Task() {
+    }
 }
