@@ -6,6 +6,7 @@ public enum Category {
     ENTERTAINMENT,
     CHORES,
     APPOINTMENT,
-    SOCIAL_LIFE;
+    SOCIAL_LIFE,
+    OTHER;
 
 }
