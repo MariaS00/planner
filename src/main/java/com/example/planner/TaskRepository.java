@@ -1,20 +1,15 @@
 package com.example.planner;
 
-import com.example.planner.exceptions.TaskAlreadyExists;
-import com.example.planner.main.Category;
-import com.example.planner.main.Priority;
-import com.example.planner.main.Task;
+import com.example.planner.model.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.util.UUID;
 
-public class TaskRepository {
+@Repository
+public interface TaskRepository extends JpaRepository<Task, UUID> {
 
-    public void createTask(String title,
-                           LocalDate taskDate,
-                           Priority priority,
-                           Category category,
-                           String description){
-        Task task = new Task(title, taskDate, priority, category, description);
-        System.out.println("Task created: " + task.getTaskTitle());
-    }
+    // tutaj query
+    // poprawny zapis w bd
+
 }

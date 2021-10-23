@@ -1,4 +1,4 @@
-package com.example.planner.main;
+package com.example.planner.model;
 
 import lombok.*;
 
@@ -9,7 +9,6 @@ import java.util.UUID;
 @Entity
 @Table
 @Getter
-@Setter
 @EqualsAndHashCode
 @ToString
 public class User {
@@ -19,7 +18,7 @@ public class User {
     private String name;
 
     @OneToMany  // cascade?
-    @JoinColumn
+    @JoinColumn(name = "taskId")
     private List<Task> tasks;
 
     public User(@NonNull String name) {

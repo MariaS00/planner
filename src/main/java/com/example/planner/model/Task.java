@@ -1,25 +1,20 @@
-package com.example.planner.main;
+package com.example.planner.model;
 
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table
 @Getter
-@Setter
 @EqualsAndHashCode
 @ToString
 @AllArgsConstructor
 public class Task {
-    // TO DO
-    //one to many - join !!!!!!!!!!!!!!!!
 
     @Id
     private UUID taskId;

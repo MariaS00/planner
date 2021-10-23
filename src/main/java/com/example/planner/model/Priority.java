@@ -1,4 +1,4 @@
-package com.example.planner.main;
+package com.example.planner.model;
 
 public enum Priority {
 
