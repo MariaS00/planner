@@ -1,11 +1,5 @@
 package com.example.planner.main;
 
-import com.example.planner.TaskRepository;
-import com.example.planner.model.Category;
-import com.example.planner.model.Priority;
-
-import java.time.LocalDate;
-
 public class App {
     public static void main(String[] args) {
 

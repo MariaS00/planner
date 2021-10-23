@@ -1,15 +1,17 @@
 package com.example.planner.controller;
 
-import com.example.planner.service.PlannerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class PlannerController {
+@RequestMapping("/api/planner")
+public class ReadPlannerController {
 
-    private final PlannerService plannerService;
 
-    // tutaj getMappingi
+
+
+
 
 }
