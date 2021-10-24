@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class WritePlannerController {
 
-    @NonNull
-    private final TaskService plannerService;
+//    @NonNull
+//    private final TaskService plannerService;
 
 //    @PostMapping("/task")
 //    ResponseEntity<CreatedTask> createdTaskResponseEntity(TaskView task){

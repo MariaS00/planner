@@ -15,5 +15,5 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     List<User> findByName(String name);
 
-    List<User> findByTaskCategoryEquals(Category category);
+   // List<User> findByTaskCategoryEquals(Category category);
 }
