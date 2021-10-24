@@ -1,5 +1,6 @@
 package com.example.planner.model;
 
+import com.example.planner.service.dto.TaskView;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Getter
 @EqualsAndHashCode
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
 
     @Id
@@ -36,18 +37,26 @@ public class Task {
         this.taskCategory = taskCategory;
         this.description = description;
     }
+//
+//    public Task(@NonNull String taskTitle,
+//                @NonNull LocalDate taskDate,
+//                @NonNull Priority taskPriority,
+//                @NonNull Category taskCategory) {
+//        this.taskId = UUID.randomUUID();
+//        this.taskTitle = taskTitle;
+//        this.taskDate = taskDate;
+//        this.taskPriority = taskPriority;
+//        this.taskCategory = taskCategory;
+//    }
 
-    public Task(@NonNull String taskTitle,
-                @NonNull LocalDate taskDate,
-                @NonNull Priority taskPriority,
-                @NonNull Category taskCategory) {
-        this.taskId = UUID.randomUUID();
-        this.taskTitle = taskTitle;
-        this.taskDate = taskDate;
-        this.taskPriority = taskPriority;
-        this.taskCategory = taskCategory;
+    public TaskView toView(){
+        return new TaskView(getTaskId(),
+                getTaskTitle(),
+                getTaskDate(),
+                getTaskPriority(),
+                getTaskCategory(),
+                getDescription());
     }
 
-    public Task() {
-    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.planner.model;
 
+import com.example.planner.service.dto.UserView;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,5 +28,9 @@ public class User {
     }
 
     public User() {
+    }
+
+    public UserView toView() {
+        return new UserView(getUserId(), getName());
     }
 }
