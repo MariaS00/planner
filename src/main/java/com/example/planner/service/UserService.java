@@ -18,6 +18,7 @@ public class UserService {
 
     public void createUser(String name){
         User user = new User(name);
+        if (userRepository)
         System.out.println("User created: " + user.toString());
         userRepository.save(user);
     }

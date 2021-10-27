@@ -1,5 +1,7 @@
 package com.example.planner.service;
 
+import com.example.planner.exceptions.TaskAlreadyExistsException;
+import com.example.planner.exceptions.TaskNotExistsException;
 import com.example.planner.repository.TaskRepository;
 import com.example.planner.model.Category;
 import com.example.planner.model.Priority;
@@ -28,14 +30,21 @@ public class TaskService {
                            Category category,
                            String description) {
         Task task = new Task(title, taskDate, priority, category, description);
-        System.out.println("Task created: " + task.getTaskTitle());
-        //taskRepository.existsAllBy(task);
-        taskRepository.save(task);
+        if (taskRepository.taskExists(task.getTaskId())){
+            throw new TaskAlreadyExistsException("Task already exists: " + task.getTaskId());
+        }else {
+            System.out.println("Task created: " + task.getTaskTitle());
+            taskRepository.save(task);
+        }
     }
 
     public void removeFromList(String title) {
+        try {
         Task task = taskRepository.findByTaskTitle(title);
         taskRepository.delete(task);
+        }catch (TaskNotExistsException exception){
+            System.out.println("Task does not exists.");
+        }
     }
 
     public List<TaskView> getAllTasks() {
