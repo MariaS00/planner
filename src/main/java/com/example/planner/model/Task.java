@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.UUID;
-// koment 
 @Entity
 @Table
 @Getter
@@ -37,17 +36,6 @@ public class Task {
         this.taskCategory = taskCategory;
         this.description = description;
     }
-//
-//    public Task(@NonNull String taskTitle,
-//                @NonNull LocalDate taskDate,
-//                @NonNull Priority taskPriority,
-//                @NonNull Category taskCategory) {
-//        this.taskId = UUID.randomUUID();
-//        this.taskTitle = taskTitle;
-//        this.taskDate = taskDate;
-//        this.taskPriority = taskPriority;
-//        this.taskCategory = taskCategory;
-//    }
 
     public TaskView toView(){
         return new TaskView(getTaskId(),
