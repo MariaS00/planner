@@ -1,5 +1,7 @@
 package com.example.planner.service;
 
+import com.example.planner.exceptions.UserAlreadyExistsException;
+import com.example.planner.exceptions.UserNotExistsException;
 import com.example.planner.model.User;
 import com.example.planner.repository.UserRepository;
 import com.example.planner.service.dto.UserView;
@@ -16,19 +18,27 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void createUser(String name){
-        User user = new User(name);
-        if (userRepository)
-        System.out.println("User created: " + user.toString());
-        userRepository.save(user);
+    public void createUser(String name) {
+        User user = null;
+        try {
+            user = new User(name);
+            System.out.println("User created: " + user.toString());
+            userRepository.save(user);
+        } catch (UserAlreadyExistsException exception) {
+            System.out.println("User already exists: " + user.getUserId());
+        }
     }
 
-    public void removeUser(UUID userId){
+    public void removeUser(UUID userId) {
+        try {
         User user = userRepository.findByUserId(userId);
         userRepository.delete(user);
+        }catch (UserNotExistsException exception){
+            System.out.println("User does not exist.");
+        }
     }
 
-    public List<UserView> getUsers(){
+    public List<UserView> getUsers() {
         return userRepository.findAll().stream().map(User::toView).collect(Collectors.toList());
     }
 

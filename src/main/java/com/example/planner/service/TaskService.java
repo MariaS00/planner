@@ -29,21 +29,22 @@ public class TaskService {
                            Priority priority,
                            Category category,
                            String description) {
-        Task task = new Task(title, taskDate, priority, category, description);
-        if (taskRepository.taskExists(task.getTaskId())){
-            throw new TaskAlreadyExistsException("Task already exists: " + task.getTaskId());
-        }else {
+        Task task = null;
+        try {
+            task = new Task(title, taskDate, priority, category, description);
             System.out.println("Task created: " + task.getTaskTitle());
             taskRepository.save(task);
+        } catch (TaskAlreadyExistsException exception) {
+            System.out.println("Task already exists: " + task.getTaskId());
         }
     }
 
     public void removeFromList(String title) {
         try {
-        Task task = taskRepository.findByTaskTitle(title);
-        taskRepository.delete(task);
-        }catch (TaskNotExistsException exception){
-            System.out.println("Task does not exists.");
+            Task task = taskRepository.findByTaskTitle(title);
+            taskRepository.delete(task);
+        } catch (TaskNotExistsException exception) {
+            System.out.println("Task does not exist.");
         }
     }
 
