@@ -18,5 +18,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     @Query("update User set name = :newName where userId = :userId")
     int updateName(String newName, UUID userId);
 
+    @Query("select (count(u) > 0) from User u where u.userId = ?1")
+    boolean userExists(UUID userId);
 
 }
