@@ -24,7 +24,7 @@ public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
 
-    public void createTask(String title,
+    public Task createTask(String title,
                            LocalDate taskDate,
                            Priority priority,
                            Category category,
@@ -37,6 +37,7 @@ public class TaskService {
         } catch (TaskAlreadyExistsException exception) {
             System.out.println("Task already exists: " + task.getTaskId());
         }
+        return task;
     }
 
     public void removeFromList(String title) {
