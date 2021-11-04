@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Planner</title>
+</head>
+<body>
+<h1>Planner</h1>
+<p>Tasks:</p>
+
+<tr th:each="task: ${tasks}">
+    <td th:text="${task.getTaskTitle()}"></td>
+    <br>
+    <td th:text="${task.getTaskId()}"></td>
+    <br>
+    <td th:text="${task.getTaskDate()}"></td>
+    <br>
+    <td th:text="${task.getTaskCategory()}"></td>
+    <br>
+    <td th:text="${task.getTaskPriority()}"></td>
+    <br>
+    <td th:text="${task.getDescription()}"></td>
+    <br>
+    <p>+++++++++++++++++++++++++++++++++++++++</p>
+</tr>
+
+<form th:action="@{/add-task}" th:object="${newTask}" method="post">
+<p>Title: <input type="text" th:field="*{taskTitle}"></p>
+<p>Date: <input type="date" th:field="*{taskDate}"></p>
+<p>Priority <input type="radio" id="low" name="priority" value="LOW" th:field="*{taskPriority}">
+    <label for="low">LOW</label><br>
+    <input type="radio" id="medium" name="priority" value="MEDIUM">
+    <label for="medium">MEDIUM</label><br>
+    <input type="radio" id="high" name="priority" value="HIGH">
+    <label for="high">HIGH</label>
+</p>
+    <p>Category <input type="radio" id="work" name="category" value="WORK" th:field="*{taskCategory}">
+        <label for="work">WORK</label><br>
+
+        <input type="radio" id="entertainment" name="category" value="ENTERTAINMENT">
+        <label for="entertainment">ENTERTAINMENT</label><br>
+
+        <input type="radio" id="chores" name="category" value="CHORES">
+        <label for="chores">CHORES</label>
+
+        <input type="radio" id="appointment" name="category" value="APPOINTMENT">
+        <label for="appointment">APPOINTMENT</label>
+
+        <input type="radio" id="socialLife" name="category" value="SOCIAL_LIFE">
+        <label for="socialLife">SOCIAL LIFE</label>
+
+        <input type="radio" id="other" name="category" value="OTHER">
+        <label for="other">OTHER</label>
+    </p>
+<p>Description <input type="text" th:field="*{description}"></p>
+<p><input type="submit" value="add new task"></p>
+</form>
+</body>
+</html>
