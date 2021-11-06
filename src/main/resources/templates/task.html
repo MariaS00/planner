@@ -9,15 +9,15 @@
 <p>Tasks:</p>
 
 <tr th:each="task: ${tasks}">
-    <td th:text="${task.getTaskTitle()}"></td>
+    <td th:text="${task.getTaskTitle()}">Title: </td>
     <br>
     <td th:text="${task.getTaskId()}"></td>
     <br>
     <td th:text="${task.getTaskDate()}"></td>
     <br>
-    <td th:text="${task.getTaskCategory()}"></td>
-    <br>
     <td th:text="${task.getTaskPriority()}"></td>
+    <br>
+    <td th:text="${task.getTaskCategory()}"></td>
     <br>
     <td th:text="${task.getDescription()}"></td>
     <br>
@@ -26,30 +26,30 @@
 
 <form th:action="@{/add-task}" th:object="${newTask}" method="post">
 <p>Title: <input type="text" th:field="*{taskTitle}"></p>
-<!--<p>Date: <input type="date" th:field="*{taskDate}"></p>-->
+<p>Date: <input type="datetime-local" th:field="*{taskDate}"></p>
 <p>Priority <input type="radio" id="low" name="priority" value="LOW" th:field="*{taskPriority}">
     <label for="low">LOW</label><br>
-    <input type="radio" id="medium" name="priority" value="MEDIUM">
+    <input type="radio" id="medium" name="priority" value="MEDIUM" th:field="*{taskPriority}">
     <label for="medium">MEDIUM</label><br>
-    <input type="radio" id="high" name="priority" value="HIGH">
+    <input type="radio" id="high" name="priority" value="HIGH" th:field="*{taskPriority}">
     <label for="high">HIGH</label>
 </p>
     <p>Category <input type="radio" id="work" name="category" value="WORK" th:field="*{taskCategory}">
         <label for="work">WORK</label><br>
 
-        <input type="radio" id="entertainment" name="category" value="ENTERTAINMENT">
+        <input type="radio" id="entertainment" name="category" value="ENTERTAINMENT" th:field="*{taskCategory}">
         <label for="entertainment">ENTERTAINMENT</label><br>
 
-        <input type="radio" id="chores" name="category" value="CHORES">
+        <input type="radio" id="chores" name="category" value="CHORES" th:field="*{taskCategory}">
         <label for="chores">CHORES</label>
 
-        <input type="radio" id="appointment" name="category" value="APPOINTMENT">
+        <input type="radio" id="appointment" name="category" value="APPOINTMENT" th:field="*{taskCategory}">
         <label for="appointment">APPOINTMENT</label>
 
-        <input type="radio" id="socialLife" name="category" value="SOCIAL_LIFE">
+        <input type="radio" id="socialLife" name="category" value="SOCIAL_LIFE" th:field="*{taskCategory}">
         <label for="socialLife">SOCIAL LIFE</label>
 
-        <input type="radio" id="other" name="category" value="OTHER">
+        <input type="radio" id="other" name="category" value="OTHER" th:field="*{taskCategory}">
         <label for="other">OTHER</label>
     </p>
 <p>Description <input type="text" th:field="*{description}"></p>

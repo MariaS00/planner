@@ -25,7 +25,7 @@ public class ReadPlannerController {
     @NonNull
     private final TaskService taskService;
 
-    private List<Task> tasks;
+    private List<Task> tasks = new ArrayList<>();
 
 //    public ReadPlannerController() {
 //        Task task1 = new Task("Wysłać email",
