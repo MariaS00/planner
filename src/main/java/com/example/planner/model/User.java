@@ -18,9 +18,9 @@ public class User {
     private UUID userId;
     private String name;
 
-    @OneToMany  // cascade?
-    @JoinColumn(name = "taskId")
-    private List<Task> tasks;
+//    @OneToMany  // cascade?
+//    @JoinColumn(name = "task_id")
+//    private List<Task> tasks;
 
     public User(@NonNull String name) {
         this.userId = UUID.randomUUID();

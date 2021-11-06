@@ -1,5 +1,6 @@
 package com.example.planner.model;
 
+
 public enum Category {
 
     WORK,

@@ -47,14 +47,18 @@ public class ReadPlannerController {
 
     @GetMapping("/tasks")
     public String getAll(Model model) {
-        model.addAttribute("tasks",tasks);
+        model.addAttribute("tasks",taskService.getAllTasks());
         model.addAttribute("newTask",new Task());
         return "task";
     }
 
     @PostMapping("/add-task")
     public String addTask(@ModelAttribute Task task){
-        tasks.add(task);
+        taskService.createTask(task.getTaskTitle(),
+                task.getTaskDate(),
+                task.getTaskPriority(),
+                task.getTaskCategory(),
+                task.getDescription());
         return "redirect:/tasks";
     }
 
