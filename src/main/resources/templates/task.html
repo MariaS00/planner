@@ -26,7 +26,7 @@
 
 <form th:action="@{/add-task}" th:object="${newTask}" method="post">
 <p>Title: <input type="text" th:field="*{taskTitle}"></p>
-<p>Date: <input type="date" th:field="*{taskDate}"></p>
+<!--<p>Date: <input type="date" th:field="*{taskDate}"></p>-->
 <p>Priority <input type="radio" id="low" name="priority" value="LOW" th:field="*{taskPriority}">
     <label for="low">LOW</label><br>
     <input type="radio" id="medium" name="priority" value="MEDIUM">
