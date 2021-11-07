@@ -28,22 +28,20 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Category taskCategory;
     private String description;
-    @ManyToOne
-    private User user;
+//    @ManyToOne
+//    private User user;
 
     public Task(@NotNull String taskTitle,
                 @NonNull Date taskDate,
                 @NonNull Priority taskPriority,
                 @NonNull Category taskCategory,
-                @NonNull String description,
-                @NonNull User user) {
+                @NonNull String description) {
         this.taskId = UUID.randomUUID();
         this.taskTitle = taskTitle;
         this.taskDate = taskDate;
         this.taskPriority = taskPriority;
         this.taskCategory = taskCategory;
         this.description = description;
-        this.user = user;
     }
 
     public TaskView toView(){

@@ -29,7 +29,7 @@ public class ReadPlannerController {
     private List<Task> tasks = new ArrayList<>();
 
     @GetMapping("/tasks")
-    public String getAll(Model model) {
+    public String createTask(Model model) {
         model.addAttribute("tasks",taskService.getAllTasks());
         model.addAttribute("newTask",new Task());
         return "task";
@@ -41,11 +41,15 @@ public class ReadPlannerController {
                 task.getTaskDate(),
                 task.getTaskPriority(),
                 task.getTaskCategory(),
-                task.getDescription(),
-                task.getUser());
+                task.getDescription());
         return "redirect:/tasks";
     }
 
+    @GetMapping("/displayAll")
+    public String getAll(Model model) {
+        model.addAttribute("tasks",taskService.getAllTasks());
+        return "showAllTasks";
+    }
 
 
 }

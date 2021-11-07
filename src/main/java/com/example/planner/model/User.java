@@ -19,9 +19,9 @@ public class User {
     private UUID userId;
     private String name;
 
-    @OneToMany(mappedBy = "user")
+//    @OneToMany    //(mappedBy = "user")
 //    @JoinColumn(name = "task_id")
-    private List<Task> tasks;
+//    private List<Task> tasks;
 
     public User(@NonNull String name) {
         this.userId = UUID.randomUUID();

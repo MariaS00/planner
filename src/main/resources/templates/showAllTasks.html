@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<h1>Planner</h1>
+<p>Tasks:</p>
+
+<tr th:each="task: ${tasks}">
+    <td th:text="${task.getTaskTitle()}">Title: </td>
+    <br>
+    <td th:text="${task.getTaskId()}"></td>
+    <br>
+    <td th:text="${task.getTaskDate()}"></td>
+    <br>
+    <td th:text="${task.getTaskPriority()}"></td>
+    <br>
+    <td th:text="${task.getTaskCategory()}"></td>
+    <br>
+    <td th:text="${task.getDescription()}"></td>
+    <br>
+    <p>+++++++++++++++++++++++++++++++++++++++</p>
+</tr>
+</body>
+</html>

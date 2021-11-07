@@ -6,23 +6,7 @@
 </head>
 <body>
 <h1>Planner</h1>
-<p>Tasks:</p>
-
-<tr th:each="task: ${tasks}">
-    <td th:text="${task.getTaskTitle()}">Title: </td>
-    <br>
-    <td th:text="${task.getTaskId()}"></td>
-    <br>
-    <td th:text="${task.getTaskDate()}"></td>
-    <br>
-    <td th:text="${task.getTaskPriority()}"></td>
-    <br>
-    <td th:text="${task.getTaskCategory()}"></td>
-    <br>
-    <td th:text="${task.getDescription()}"></td>
-    <br>
-    <p>+++++++++++++++++++++++++++++++++++++++</p>
-</tr>
+<p>Create Task: </p>
 
 <form th:action="@{/add-task}" th:object="${newTask}" method="post">
 <p>Title: <input type="text" th:field="*{taskTitle}"></p>
