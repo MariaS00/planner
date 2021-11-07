@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 //@RequestMapping("/api/planner")
-public class ReadPlannerController {
+public class TaskController {
 
     @NonNull
     private final TaskService taskService;
@@ -50,6 +50,8 @@ public class ReadPlannerController {
         model.addAttribute("tasks",taskService.getAllTasks());
         return "showAllTasks";
     }
+
+
 
 
 }

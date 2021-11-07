@@ -7,8 +7,9 @@
 <body>
 <h1>Planner</h1>
 <p>Tasks:</p>
-
-<tr th:each="task: ${tasks}">
+<li><a href="removeTask.html">Remove task</a></li>
+<ul>
+<li><tr th:each="task: ${tasks}">
     <td th:text="${task.getTaskTitle()}">Title: </td>
     <br>
     <td th:text="${task.getTaskId()}"></td>
@@ -21,7 +22,9 @@
     <br>
     <td th:text="${task.getDescription()}"></td>
     <br>
+</li>
     <p>+++++++++++++++++++++++++++++++++++++++</p>
 </tr>
+</ul>
 </body>
 </html>
