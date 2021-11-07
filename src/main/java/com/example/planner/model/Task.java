@@ -1,6 +1,7 @@
 package com.example.planner.model;
 
 import com.example.planner.service.dto.TaskView;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,7 +31,7 @@ public class Task {
     @ManyToOne
     private User user;
 
-    public Task(@NonNull String taskTitle,
+    public Task(@NotNull String taskTitle,
                 @NonNull Date taskDate,
                 @NonNull Priority taskPriority,
                 @NonNull Category taskCategory,

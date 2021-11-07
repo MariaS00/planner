@@ -27,24 +27,6 @@ public class ReadPlannerController {
 
     private List<Task> tasks = new ArrayList<>();
 
-//    public ReadPlannerController() {
-//        Task task1 = new Task("Wysłać email",
-//                LocalDate.of(2021,11,14),
-//                Priority.MEDIUM,
-//                Category.OTHER,
-//                "do: janN33@gmail.com");
-//
-//        Task task2 = new Task("Odebrać paczke",
-//                LocalDate.of(2021,11,01),
-//                Priority.LOW,
-//                Category.WORK,
-//                "adres...");
-//
-//        tasks = new ArrayList<>();
-//        tasks.add(task1);
-//        tasks.add(task2);
-//    }
-
     @GetMapping("/tasks")
     public String getAll(Model model) {
         model.addAttribute("tasks",taskService.getAllTasks());
