@@ -19,21 +19,18 @@ public class UserService {
     private UserRepository userRepository;
 
     public void createUser(String name) {
-        User user = null;
-        try {
-            user = new User(name);
-            System.out.println("User created: " + user.toString());
-            userRepository.save(user);
-        } catch (UserAlreadyExistsException exception) {
-            System.out.println("User already exists: " + user.getUserId());
-        }
+
+        User user = new User(name);
+        System.out.println("User created: " + user.toString());
+        userRepository.save(user);
+
     }
 
     public void removeUser(UUID userId) {
         try {
-        User user = userRepository.findByUserId(userId);
-        userRepository.delete(user);
-        }catch (UserNotExistsException exception){
+            User user = userRepository.findByUserId(userId);
+            userRepository.delete(user);
+        } catch (UserNotExistsException exception) {
             System.out.println("User does not exist.");
         }
     }

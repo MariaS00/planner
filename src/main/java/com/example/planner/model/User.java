@@ -10,6 +10,7 @@ import java.util.UUID;
 @Entity
 @Table
 @Getter
+@Setter
 @EqualsAndHashCode
 //@ToString
 public class User {
