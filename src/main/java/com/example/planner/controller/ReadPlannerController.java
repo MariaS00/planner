@@ -58,7 +58,8 @@ public class ReadPlannerController {
                 task.getTaskDate(),
                 task.getTaskPriority(),
                 task.getTaskCategory(),
-                task.getDescription());
+                task.getDescription(),
+                task.getUser());
         return "redirect:/tasks";
     }
 

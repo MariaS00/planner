@@ -2,6 +2,7 @@ package com.example.planner.service;
 
 import com.example.planner.exceptions.TaskAlreadyExistsException;
 import com.example.planner.exceptions.TaskNotExistsException;
+import com.example.planner.model.User;
 import com.example.planner.repository.TaskRepository;
 import com.example.planner.model.Category;
 import com.example.planner.model.Priority;
@@ -28,10 +29,11 @@ public class TaskService {
                            Date taskDate,
                            Priority priority,
                            Category category,
-                           String description) {
+                           String description,
+                           User user) {
         Task task = null;
         try {
-            task = new Task(title, taskDate, priority, category, description);
+            task = new Task(title, taskDate, priority, category, description, user);
             System.out.println("Task created: " + task.getTaskTitle());
             taskRepository.save(task);
         } catch (TaskAlreadyExistsException exception) {

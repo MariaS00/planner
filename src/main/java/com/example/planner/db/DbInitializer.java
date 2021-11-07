@@ -29,7 +29,7 @@ public class DbInitializer implements CommandLineRunner {
                 Date.valueOf("2021-11-13"),
                 Priority.MEDIUM,
                 Category.WORK,
-                "O 12:00"));
+                "O 12:00", user));
 
         taskRepository.findAll().forEach(System.out::println);
         System.out.println(taskRepository.count());

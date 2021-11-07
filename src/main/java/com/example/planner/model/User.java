@@ -11,16 +11,16 @@ import java.util.UUID;
 @Table
 @Getter
 @EqualsAndHashCode
-@ToString
+//@ToString
 public class User {
 
     @Id
     private UUID userId;
     private String name;
 
-//    @OneToMany  // cascade?
+    @OneToMany(mappedBy = "user")
 //    @JoinColumn(name = "task_id")
-//    private List<Task> tasks;
+    private List<Task> tasks;
 
     public User(@NonNull String name) {
         this.userId = UUID.randomUUID();
