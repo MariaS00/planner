@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WelcomeController {
 
-    @GetMapping("/hello")
+    @GetMapping("/welcome")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="You") String name,
                            Model model) {
         model.addAttribute("name", name);

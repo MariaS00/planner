@@ -3,6 +3,7 @@ package com.example.planner.controller;
 import com.example.planner.model.Category;
 import com.example.planner.model.Priority;
 import com.example.planner.model.Task;
+import com.example.planner.repository.TaskRepository;
 import com.example.planner.service.TaskService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +27,14 @@ public class TaskController {
     @NonNull
     private final TaskService taskService;
 
-    private List<Task> tasks = new ArrayList<>();
+    @NonNull
+    private final TaskRepository taskRepository;
+
+//    private List<Task> tasks = new ArrayList<>();
 
     @GetMapping("/tasks")
     public String createTask(Model model) {
-        model.addAttribute("tasks",taskService.getAllTasks());
+        //model.addAttribute("tasks",taskService.getAllTasks());
         model.addAttribute("newTask",new Task());
         return "task";
     }
@@ -42,7 +46,8 @@ public class TaskController {
                 task.getTaskPriority(),
                 task.getTaskCategory(),
                 task.getDescription());
-        return "redirect:/tasks";
+        taskRepository.save(task);
+        return "redirect:/displayAll";
     }
 
     @GetMapping("/displayAll")
@@ -51,7 +56,11 @@ public class TaskController {
         return "showAllTasks";
     }
 
-
+    @PostMapping("/remove")
+    public String removeTask(@ModelAttribute Task task){
+        taskService.removeFromList(task);
+        return "redirect:/displayAll";
+    }
 
 
 }

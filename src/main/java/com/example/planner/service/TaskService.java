@@ -12,13 +12,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-//@Transactional
+@Transactional
 //@RequiredArgsConstructor
 public class TaskService {
 
@@ -30,19 +31,14 @@ public class TaskService {
                            Priority priority,
                            Category category,
                            String description) {
-        Task task =  new Task(title, taskDate, priority, category, description);
+        Task task = new Task(title, taskDate, priority, category, description);
         taskRepository.save(task);
         System.out.println("Task created: " + task.getTaskTitle());
         return task;
     }
 
-    public void removeFromList(String title) {
-        try {
-            Task task = taskRepository.findByTaskTitle(title);
+    public void removeFromList(Task task) {
             taskRepository.delete(task);
-        } catch (TaskNotExistsException exception) {
-            System.out.println("Task does not exist.");
-        }
     }
 
     public List<TaskView> getAllTasks() {

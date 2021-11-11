@@ -7,24 +7,21 @@
 <body>
 <h1>Planner</h1>
 <p>Tasks:</p>
-<li><a href="removeTask.html">Remove task</a></li>
-<ul>
-<li><tr th:each="task: ${tasks}">
-    <td th:text="${task.getTaskTitle()}">Title: </td>
+<tr th:each="task: ${tasks}">
+    <td th:text="${task.taskTitle}">Title: </td>
     <br>
-    <td th:text="${task.getTaskId()}"></td>
+    <td th:text="${task.getTaskId()}">Id: </td>
     <br>
-    <td th:text="${task.getTaskDate()}"></td>
+    <td th:text="${task.getTaskDate()}">Task date: </td>
     <br>
-    <td th:text="${task.getTaskPriority()}"></td>
+    <td th:text="${task.getTaskPriority()}">Task Priority: </td>
     <br>
-    <td th:text="${task.getTaskCategory()}"></td>
+    <td th:text="${task.getTaskCategory()}">Task Category: </td>
     <br>
-    <td th:text="${task.getDescription()}"></td>
+    <td th:text="${task.getDescription()}">Description: </td>
     <br>
-</li>
     <p>+++++++++++++++++++++++++++++++++++++++</p>
+    <input type="button" value="Add another Task" onclick="location.href='task.html';" />
 </tr>
-</ul>
 </body>
 </html>

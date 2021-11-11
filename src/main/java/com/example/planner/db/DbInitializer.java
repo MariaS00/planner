@@ -24,7 +24,7 @@ public class DbInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        User user = userRepository.save(new User("Maria"));
+        User user = userRepository.save(new User("Maria"));
         Task meeting = taskRepository.save(new Task("Spotkanie",
                 Date.valueOf("2021-11-13"),
                 Priority.MEDIUM,
