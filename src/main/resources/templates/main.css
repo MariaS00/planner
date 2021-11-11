@@ -1,0 +1,149 @@
+body {
+    background-color: lightblue;
+}
+
+#container {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo {
+    color: aliceblue;
+    margin-top: 20px;
+    font-size: 44px;
+    letter-spacing: 3px;
+    font-weight: 900;
+}
+
+#menu {
+    background-color: #66a3d0;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    color: aliceblue;
+    padding: 10px;
+}
+
+#sidebar {
+    float: left;
+    width: 148px;
+    min-height: 620px;
+    padding: 20px;
+    background-color: #3d3e48;
+    text-align: center;
+    font-size: 18px;
+    border-right: 2px dotted white;
+}
+
+#content {
+    float: left;
+    padding: 40px;
+    width: 730px;
+    background-color: #919da2;
+    min-height: 580px;
+    text-align: justify;
+    color: #3d3e48;
+}
+
+#footer {
+    clear: both;
+    background-color: #66a3d0;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+}
+
+#topbar {
+    size: 40px;
+    background-color: #66a3d0;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    color: aliceblue;
+    padding: 10px;
+    text-align: center;
+}
+
+#form {
+    float: left;
+    padding: 40px;
+    width: 730px;
+    background-color: #919da2;
+    min-height: 580px;
+    text-align: justify;
+}
+
+.option {
+    float: left;
+    min-width: 50px;
+    height: 25px;
+    font-size: 18px;
+    padding: 10px;
+    border-right: 2px dotted white;
+    opacity: 0.8;
+}
+
+.option:hover {
+    background-color: #b0abab;
+    cursor: pointer;
+}
+
+.optionL {
+    font-size: 18px;
+    height: 25px;
+    padding: 10px;
+    border-bottom: 2px dotted white;
+}
+
+.optionL:hover {
+    background-color: #b0abab;
+    color: white;
+    cursor: pointer;
+}
+
+.bigtitle {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.dottedline {
+    height: 5px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px dotted #444444;
+}
+
+.input {
+    width: 300px;
+    color: #3d3e48;
+}
+
+.button {
+    background-color: #66a3d0;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #3d3e48;
+}
+
+
+
+

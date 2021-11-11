@@ -34,7 +34,7 @@ public class TaskController {
 
     @GetMapping("/tasks")
     public String createTask(Model model) {
-        //model.addAttribute("tasks",taskService.getAllTasks());
+        model.addAttribute("tasks",taskService.getAllTasks());
         model.addAttribute("newTask",new Task());
         return "task";
     }
@@ -46,8 +46,8 @@ public class TaskController {
                 task.getTaskPriority(),
                 task.getTaskCategory(),
                 task.getDescription());
-        taskRepository.save(task);
-        return "redirect:/displayAll";
+//        taskRepository.save(task);
+        return "redirect:/tasks";
     }
 
     @GetMapping("/displayAll")
@@ -58,8 +58,9 @@ public class TaskController {
 
     @PostMapping("/remove")
     public String removeTask(@ModelAttribute Task task){
+        taskService.getAllTasks();
         taskService.removeFromList(task);
-        return "redirect:/displayAll";
+        return "removeTask";
     }
 
 

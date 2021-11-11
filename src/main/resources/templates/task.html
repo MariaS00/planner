@@ -2,43 +2,82 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css" type="text/css">
     <title>Planner</title>
 </head>
 <body>
-<h1>Planner</h1>
-<p>Create Task: </p>
+<div id="container">
+    <div id="logo">
+        <h1 onclick="location.href='welcome.html';">Planner</h1>
+    </div>
+    <div id="topbar">
+        <p>Create Task: </p>
+    </div>
+    <div id="sidebar">
+        <div class="optionL"><a href="task.html">Create task</a></div>
+        <div class="optionL"><a href="showAllTasks.html">Display tasks</a></div>
+        <div class="optionL"><a href="removeTask.html">Remove task</a></div>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="form">
+        <form th:action="@{/tasks}" th:object="${newTask}" method="post">
+            <div class="input">
+                <p>Title: <label>
+                    <input type="text" th:field="*{taskTitle}">
+                </label></p>
+            </div>
+            <div class="dottedline"></div>
+            <div class="input">
+                <p>Date: <label>
+                    <input type="datetime-local" th:field="*{taskDate}">
+                </label></p>
+            </div>
+            <div class="dottedline"></div>
+            <div class="input">
+                <p>Priority <br>
+                    <input type="radio" id="low" name="priority" value="LOW" th:field="*{taskPriority}">
+                    <label for="low">LOW</label><br>
+                    <input type="radio" id="medium" name="priority" value="MEDIUM" th:field="*{taskPriority}">
+                    <label for="medium">MEDIUM</label><br>
+                    <input type="radio" id="high" name="priority" value="HIGH" th:field="*{taskPriority}">
+                    <label for="high">HIGH</label>
+                </p>
+            </div>
+            <div class="dottedline"></div>
+            <div class="input">
+                <p>Category <br>
+                    <input type="radio" id="work" name="category" value="WORK" th:field="*{taskCategory}">
+                    <label for="work">WORK</label><br>
 
-<form th:action="@{/add-task}" th:object="${newTask}" method="post">
-<p>Title: <input type="text" th:field="*{taskTitle}"></p>
-<p>Date: <input type="datetime-local" th:field="*{taskDate}"></p>
-<p>Priority <input type="radio" id="low" name="priority" value="LOW" th:field="*{taskPriority}">
-    <label for="low">LOW</label><br>
-    <input type="radio" id="medium" name="priority" value="MEDIUM" th:field="*{taskPriority}">
-    <label for="medium">MEDIUM</label><br>
-    <input type="radio" id="high" name="priority" value="HIGH" th:field="*{taskPriority}">
-    <label for="high">HIGH</label>
-</p>
-    <p>Category <input type="radio" id="work" name="category" value="WORK" th:field="*{taskCategory}">
-        <label for="work">WORK</label><br>
+                    <input type="radio" id="entertainment" name="category" value="ENTERTAINMENT"
+                           th:field="*{taskCategory}">
+                    <label for="entertainment">ENTERTAINMENT</label><br>
 
-        <input type="radio" id="entertainment" name="category" value="ENTERTAINMENT" th:field="*{taskCategory}">
-        <label for="entertainment">ENTERTAINMENT</label><br>
+                    <input type="radio" id="chores" name="category" value="CHORES" th:field="*{taskCategory}">
+                    <label for="chores">CHORES</label><br>
 
-        <input type="radio" id="chores" name="category" value="CHORES" th:field="*{taskCategory}">
-        <label for="chores">CHORES</label>
+                    <input type="radio" id="appointment" name="category" value="APPOINTMENT" th:field="*{taskCategory}">
+                    <label for="appointment">APPOINTMENT</label><br>
 
-        <input type="radio" id="appointment" name="category" value="APPOINTMENT" th:field="*{taskCategory}">
-        <label for="appointment">APPOINTMENT</label>
+                    <input type="radio" id="socialLife" name="category" value="SOCIAL_LIFE" th:field="*{taskCategory}">
+                    <label for="socialLife">SOCIAL LIFE</label><br>
 
-        <input type="radio" id="socialLife" name="category" value="SOCIAL_LIFE" th:field="*{taskCategory}">
-        <label for="socialLife">SOCIAL LIFE</label>
-
-        <input type="radio" id="other" name="category" value="OTHER" th:field="*{taskCategory}">
-        <label for="other">OTHER</label>
-    </p>
-<p>Description <input type="text" th:field="*{description}"></p>
-    <input type="button" value="Add new Task" onclick="location.href='showAllTasks.html';" />
-    <input type="reset" value="Reset" /></p>
-</form>
+                    <input type="radio" id="other" name="category" value="OTHER" th:field="*{taskCategory}">
+                    <label for="other">OTHER</label><br>
+                </p>
+            </div>
+            <div class="dottedline"></div>
+            <div class="input">
+                <p>Description <input type="text" th:field="*{description}"></p>
+            </div>
+            <div class="dottedline"></div>
+            <input type="button" value="Add new Task" onclick="location.href='showAllTasks.html';" class="button"/>
+            <input type="reset" value="Reset" class="button"/></p>
+        </form>
+    </div>
+    <div id="footer">
+        The best Planner ever. M&A
+    </div>
+</div>
 </body>
 </html>

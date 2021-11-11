@@ -2,26 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tasks</title>
+    <title>Planner</title>
+    <link rel="stylesheet" href="main.css" type="text/css">
 </head>
 <body>
-<h1>Planner</h1>
-<p>Tasks:</p>
-<tr th:each="task: ${tasks}">
-    <td th:text="${task.taskTitle}">Title: </td>
-    <br>
-    <td th:text="${task.getTaskId()}">Id: </td>
-    <br>
-    <td th:text="${task.getTaskDate()}">Task date: </td>
-    <br>
-    <td th:text="${task.getTaskPriority()}">Task Priority: </td>
-    <br>
-    <td th:text="${task.getTaskCategory()}">Task Category: </td>
-    <br>
-    <td th:text="${task.getDescription()}">Description: </td>
-    <br>
-    <p>+++++++++++++++++++++++++++++++++++++++</p>
-    <input type="button" value="Add another Task" onclick="location.href='task.html';" />
-</tr>
+<div id="container">
+    <div id="logo">
+        <h1 onclick="location.href='welcome.html';">Planner</h1>
+    </div>
+    <div id="topbar">
+        <p>Tasks: </p>
+    </div>
+    <div id="sidebar">
+        <div class="optionL"><a href="task.html">Create task</a></div>
+        <div class="optionL"><a href="showAllTasks.html">Display tasks</a></div>
+        <div class="optionL"><a href="removeTask.html">Remove task</a></div>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="content">
+        <tr th:action="@{/displayAll}" th:each="task: ${tasks}" th:method="post">
+            <td th:text="${task.taskTitle}">Title:</td>
+            <br><br>
+            <td th:text="${task.getTaskId()}">Id:</td>
+            <br><br>
+            <td th:text="${task.getTaskDate()}">Task date:</td>
+            <br><br>
+            <td th:text="${task.getTaskPriority()}">Task Priority:</td>
+            <br><br>
+            <td th:text="${task.getTaskCategory()}">Task Category:</td>
+            <br><br>
+            <td th:text="${task.getDescription()}">Description:</td>
+            <br><br>
+            <div class="dottedline"></div>
+            <input type="button" value="Add another Task" onclick="location.href='task.html';" class="button"/>
+        </tr>
+    </div>
+    <div id="footer">
+        The best Planner ever. M&A
+    </div>
+</div>
 </body>
 </html>
