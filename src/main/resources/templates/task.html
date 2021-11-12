@@ -20,7 +20,7 @@
         <div style="clear: both;"></div>
     </div>
     <div id="form">
-        <form th:action="@{/tasks}" th:object="${newTask}" method="post">
+        <form th:action="@{/add-task}" th:object="${newTask}" method="post">
             <div class="input">
                 <p>Title: <label>
                     <input type="text" th:field="*{taskTitle}">

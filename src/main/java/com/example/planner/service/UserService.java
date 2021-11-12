@@ -1,7 +1,5 @@
 package com.example.planner.service;
 
-import com.example.planner.exceptions.UserAlreadyExistsException;
-import com.example.planner.exceptions.UserNotExistsException;
 import com.example.planner.model.User;
 import com.example.planner.repository.UserRepository;
 import com.example.planner.service.dto.UserView;
@@ -9,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,18 +18,13 @@ public class UserService {
     public void createUser(String name) {
 
         User user = new User(name);
-        System.out.println("User created: " + user.toString());
         userRepository.save(user);
+        System.out.println("User created: " + user.getUserId());
 
     }
 
-    public void removeUser(UUID userId) {
-        try {
-            User user = userRepository.findByUserId(userId);
+    public void removeUser(User user) {
             userRepository.delete(user);
-        } catch (UserNotExistsException exception) {
-            System.out.println("User does not exist.");
-        }
     }
 
     public List<UserView> getUsers() {
