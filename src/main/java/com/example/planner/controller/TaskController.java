@@ -55,7 +55,6 @@ public class TaskController {
 
     @PostMapping("/remove/{taskId}")
     public String removeTask(@PathVariable UUID taskId) {
-        //model.addAttribute("tasks",taskService.getAllTasks());
         Optional<Task> task1 = taskRepository.findById(taskId);
         if (task1.isPresent()){
             taskService.removeFromList(task1.get());
@@ -63,17 +62,17 @@ public class TaskController {
         return "redirect:/displayAll";
     }
 
-//    @GetMapping("/edit")
-//    public String editPost(Model model) {
-//        model.addAttribute("tasks", taskService.getAllTasks());
-//        return "editTask";
-//    }
-//
-//    @PutMapping("/edit/{taskTitle}")
-//    public String editPost() {
-//        taskService.editTask(task);
-//        return "edit";
-//    }
+    @GetMapping("/edit")
+    public String editPost(Model model) {
+        model.addAttribute("tasks", taskService.getAllTasks());
+        return "editTask";
+    }
+
+    @PutMapping("/edit/{taskTitle}")
+    public String editTaskTitle(Task task, @PathVariable String taskTitle) {
+        taskRepository.updateTaskTitle(taskTitle, task.getTaskId());
+        return "redirect:/edit";
+    }
 
 
 }

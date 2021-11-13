@@ -30,6 +30,7 @@ body {
     float: left;
     width: 148px;
     min-height: 620px;
+    /*max-height: 100%; */
     /*min-height: auto;*/
     padding: 20px;
     background-color: #3d3e48;
