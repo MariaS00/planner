@@ -11,7 +11,7 @@
         <h1 onclick="location.href='/welcome';">Planner</h1>
     </div>
     <div id="topbar">
-        <p>Create Task: </p>
+        <p>Edit Task: </p>
     </div>
     <div id="sidebar">
         <div class="optionL"><a th:href="@{/tasks}">Create task</a></div>
@@ -20,7 +20,7 @@
         <div style="clear: both;"></div>
     </div>
     <div id="form">
-        <form th:action="@{/add-task}" th:object="${newTask}" method="post">
+        <form th:action="@{/edit}" th:object="${task}" method="post">
             <div class="input">
                 <p>Title: <label>
                     <input type="text" th:field="*{taskTitle}">
@@ -71,11 +71,10 @@
                 <p>Description <input type="text" th:field="*{description}"></p>
             </div>
             <div class="dottedline"></div>
-            <input type="submit" value="Add new Task"  class="button"/>
+            <input type="button" value="Add new Task" onclick="location.href='/displayAll';" class="button"/>
             <input type="reset" value="Reset" class="button"/></p>
         </form>
     </div>
-<!--    onclick="location.href='showAllTasks.html';"-->
     <div id="footer">
         The best Planner ever. M&A
     </div>

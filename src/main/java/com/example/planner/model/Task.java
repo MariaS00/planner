@@ -14,7 +14,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @EqualsAndHashCode
-//@ToString
 @NoArgsConstructor
 public class Task {
 

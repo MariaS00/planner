@@ -1,27 +1,20 @@
 package com.example.planner.controller;
 
-import com.example.planner.model.Category;
-import com.example.planner.model.Priority;
 import com.example.planner.model.Task;
 import com.example.planner.repository.TaskRepository;
 import com.example.planner.service.TaskService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-//@RequestMapping("/api/planner")
 public class TaskController {
 
     @NonNull
@@ -30,7 +23,6 @@ public class TaskController {
     @NonNull
     private final TaskRepository taskRepository;
 
-//    private List<Task> tasks = new ArrayList<>();
 
     @GetMapping("/tasks")
     public String createTask(Model model) {
@@ -46,8 +38,7 @@ public class TaskController {
                 task.getTaskPriority(),
                 task.getTaskCategory(),
                 task.getDescription());
-//        taskRepository.save(task);
-        return "redirect:/tasks";
+        return "redirect:/displayAll";
     }
 
     @GetMapping("/displayAll")
@@ -58,9 +49,14 @@ public class TaskController {
 
     @PostMapping("/remove")
     public String removeTask(@ModelAttribute Task task){
-        taskService.getAllTasks();
-        taskService.removeFromList(task);
+//        taskService.removeFromList(task);
         return "removeTask";
+    }
+
+    @PutMapping("/edit")
+    public String editPost(@ModelAttribute Task task) {
+        taskService.editTask(task);
+        return "redirect:/tasks";
     }
 
 

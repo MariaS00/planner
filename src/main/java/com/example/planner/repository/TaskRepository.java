@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,15 +22,15 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     List<Task> findAllByTaskCategory(Category category);
 
-    List<Task> findAllByTaskDate(LocalDate date);
+    List<Task> findAllByTaskDate(Date date);
 
     List<Task> findAllByTaskPriority(Priority priority);
 
-    List<Task> findAllByTaskPriorityAndTaskDate(Priority priority, LocalDate localDate);
+    List<Task> findAllByTaskPriorityAndTaskDate(Priority priority, Date localDate);
 
     List<Task> findAllByDescriptionStartingWithIgnoreCase(String description);
 
-    List<Task> countAllByTaskDate(LocalDate date);
+    List<Task> countAllByTaskDate(Date date);
 
     @Query("select (count(t) > 0) from Task t where t.taskId = ?1")
     boolean taskExists(UUID taskId);
@@ -40,6 +41,19 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     @Modifying
     @Query("update Task set taskDate = : newDate where taskId = : taskId")
-    int updateTaskDate(LocalDate newDate, UUID taskId);
+    int updateTaskDate(Date newDate, UUID taskId);
+
+    @Modifying
+    @Query("update Task set taskTitle = : newTitle where taskId = : taskId")
+    int updateTaskTitle(String newTitle, UUID taskId);
+
+    @Modifying
+    @Query("update Task set description = : newDescription where taskId = : taskId")
+    int updateTaskDescription(String newDescription, UUID taskId);
+
+    @Modifying
+    @Query("update Task set taskCategory = : newTaskCategory where taskId = : taskId")
+    int updateTaskCategory(Category newTaskCategory, UUID taskId);
+
 
 }

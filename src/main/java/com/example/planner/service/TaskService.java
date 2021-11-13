@@ -42,4 +42,11 @@ public class TaskService {
         return taskRepository.findAll().stream().map(Task::toView).collect(Collectors.toList());
     }
 
+    public void editTask(Task task) {
+        taskRepository.updateTaskTitle(task.getTaskTitle(),task.getTaskId());
+        taskRepository.updateTaskDate(task.getTaskDate(),task.getTaskId());
+        taskRepository.updatePriority(task.getTaskPriority(),task.getTaskId());
+        taskRepository.updateTaskCategory(task.getTaskCategory(),task.getTaskId());
+        taskRepository.updateTaskDescription(task.getDescription(),task.getTaskId());
+    }
 }
