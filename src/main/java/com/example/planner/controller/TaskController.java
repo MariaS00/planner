@@ -7,10 +7,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+import java.util.UUID;
 
 
 @Controller
@@ -47,17 +47,33 @@ public class TaskController {
         return "showAllTasks";
     }
 
-    @PostMapping("/remove")
-    public String removeTask(@ModelAttribute Task task){
-//        taskService.removeFromList(task);
+    @GetMapping("/remove")
+    public String removeTask(Model model){
+        model.addAttribute("tasks",taskService.getAllTasks());
         return "removeTask";
     }
 
-    @PutMapping("/edit")
-    public String editPost(@ModelAttribute Task task) {
-        taskService.editTask(task);
-        return "redirect:/tasks";
+    @PostMapping("/remove/{taskId}")
+    public String removeTask(@PathVariable UUID taskId) {
+        //model.addAttribute("tasks",taskService.getAllTasks());
+        Optional<Task> task1 = taskRepository.findById(taskId);
+        if (task1.isPresent()){
+            taskService.removeFromList(task1.get());
+        }
+        return "redirect:/displayAll";
     }
+
+//    @GetMapping("/edit")
+//    public String editPost(Model model) {
+//        model.addAttribute("tasks", taskService.getAllTasks());
+//        return "editTask";
+//    }
+//
+//    @PutMapping("/edit/{taskTitle}")
+//    public String editPost() {
+//        taskService.editTask(task);
+//        return "edit";
+//    }
 
 
 }

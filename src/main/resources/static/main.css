@@ -30,6 +30,7 @@ body {
     float: left;
     width: 148px;
     min-height: 620px;
+    /*min-height: auto;*/
     padding: 20px;
     background-color: #3d3e48;
     text-align: center;

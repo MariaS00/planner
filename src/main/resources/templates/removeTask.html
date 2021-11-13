@@ -6,40 +6,43 @@
     <link rel="stylesheet" th:href="@{/main.css}" type="text/css">
 </head>
 <body>
-<!--<div id="container">-->
-<!--    <div id="logo">-->
-<!--        <h1 onclick="location.href='/welcome';">Planner</h1>-->
-<!--    </div>-->
-<!--    <div id="topbar">-->
-<!--        <p>Tasks: </p>-->
-<!--    </div>-->
-<!--    <div id="sidebar">-->
-<!--        <div class="optionL"><a th:href="@{/tasks}">Create task</a></div>-->
-<!--        <div class="optionL"><a th:href="@{/displayAll}">Display tasks</a></div>-->
-<!--        <div class="optionL"><a th:href="@{/remove}">Remove task</a></div>-->
-<!--        <div style="clear: both;"></div>-->
-<!--    </div>-->
-<!--    <div id="content">-->
-<!--        <tr th:action="@{/remove}" th:each="task" th:method="post">-->
-<!--            <td th:text="${task.taskTitle}">Title:</td>-->
-<!--            <br><br>-->
-<!--            <td th:text="${task.getTaskId()}">Id:</td>-->
-<!--            <br><br>-->
-<!--            <td th:text="${task.getTaskDate()}">Task date:</td>-->
-<!--            <br><br>-->
-<!--            <td th:text="${task.getTaskPriority()}">Task Priority:</td>-->
-<!--            <br><br>-->
-<!--            <td th:text="${task.getTaskCategory()}">Task Category:</td>-->
-<!--            <br><br>-->
-<!--            <td th:text="${task.getDescription()}">Description:</td>-->
-<!--            <br><br>-->
-<!--            <input type="submit" value="Remove" class="button"/>-->
-<!--            <div class="dottedline"></div>-->
-<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
-<!--    </div>-->
-<!--    <div id="footer">-->
-<!--        The best Planner ever. M&A-->
-<!--    </div>-->
-<!--</div>-->
+<div id="container">
+    <div id="logo">
+        <h1 onclick="location.href='/welcome';">Planner</h1>
+    </div>
+    <div id="topbar">
+        <p>Tasks: </p>
+    </div>
+    <div id="sidebar">
+        <div class="optionL"><a th:href="@{/tasks}">Create task</a></div>
+        <div class="optionL"><a th:href="@{/displayAll}">Display tasks</a></div>
+        <div class="optionL"><a th:href="@{/remove}">Remove task</a></div>
+        <div style="clear: both;"></div>
+    </div>
+    <div id="content">
+        <tr th:action="@{/remove}" th:each="task: ${tasks}" th:method="post">
+            <td th:text="${task.taskTitle}">Title:</td>
+            <br><br>
+            <td th:text="${task.getTaskId()}">Id:</td>
+            <br><br>
+            <td th:text="${task.getTaskDate()}">Task date:</td>
+            <br><br>
+            <td th:text="${task.getTaskPriority()}">Task Priority:</td>
+            <br><br>
+            <td th:text="${task.getTaskCategory()}">Task Category:</td>
+            <br><br>
+            <td th:text="${task.getDescription()}">Description:</td>
+            <br><br>
+            <div class="dottedline"></div>
+            <!--            <form th:action="@{/mycontroller/} + ${type}">-->
+            <form method="post" th:action="@{/remove/} + ${task.getTaskId}">
+                <input type="submit" value="Remove" class="button"/><br><br>
+            </form>
+        </tr>
+    </div>
+    <div id="footer">
+        The best Planner ever. M&A
+    </div>
+</div>
 </body>
 </html>
