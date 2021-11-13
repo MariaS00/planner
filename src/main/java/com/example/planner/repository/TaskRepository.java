@@ -6,6 +6,7 @@ import com.example.planner.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     void delete(Task task);
 
-    Task findByTaskTitle(String title);
+    List<Task> findByTaskTitle(String title);
 
     List<Task> findAllByTaskCategory(Category category);
 
@@ -30,30 +31,32 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     List<Task> findAllByDescriptionStartingWithIgnoreCase(String description);
 
-    List<Task> countAllByTaskDate(Date date);
+    Long countAllByTaskDate(Date date);
 
     @Query("select (count(t) > 0) from Task t where t.taskId = ?1")
     boolean taskExists(UUID taskId);
 
     @Modifying
-    @Query("update Task set taskPriority = : newPriority where taskId = : taskId")
-    int updatePriority(Priority newPriority, UUID taskId);
+    @Query("update Task set taskPriority = :newPriority where taskId = :taskId")
+    int updatePriority(@Param("newPriority") Priority newPriority, @Param("taskId") UUID taskId);
 
     @Modifying
-    @Query("update Task set taskDate = : newDate where taskId = : taskId")
-    int updateTaskDate(Date newDate, UUID taskId);
+    @Query("update Task set taskDate = :newDate where taskId = :taskId")
+    int updateTaskDate(@Param("newDate") Date newDate,@Param("taskId") UUID taskId);
 
     @Modifying
-    @Query("update Task set taskTitle = : newTitle where taskId = : taskId")
-    int updateTaskTitle(String newTitle, UUID taskId);
+    @Query("update Task set taskTitle = :newTitle where taskId = :taskId")
+    int updateTaskTitle(@Param("newTitle") String newTitle,@Param("taskId") UUID taskId);
 
     @Modifying
-    @Query("update Task set description = : newDescription where taskId = : taskId")
-    int updateTaskDescription(String newDescription, UUID taskId);
+    @Query("update Task set description = :newDescription where taskId = :taskId")
+    int updateTaskDescription(@Param("newDescription") String newDescription,@Param("taskId") UUID taskId);
 
     @Modifying
-    @Query("update Task set taskCategory = : newTaskCategory where taskId = : taskId")
-    int updateTaskCategory(Category newTaskCategory, UUID taskId);
+    @Query("update Task set taskCategory = :newTaskCategory where taskId = :taskId")
+    int updateTaskCategory(@Param("newTaskCategory") Category newTaskCategory,@Param("taskId") UUID taskId);
+
+
 
 
 }
