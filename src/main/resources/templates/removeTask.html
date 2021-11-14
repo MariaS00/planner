@@ -33,10 +33,10 @@
             <br><br>
             <td th:text="${task.getDescription()}">Description:</td>
             <br><br>
-            <div class="dottedline"></div>
             <form method="post" th:action="@{/remove/} + ${task.getTaskId}">
                 <input type="submit" value="Remove" class="button"/><br><br>
             </form>
+            <div class="dottedline"></div>
         </tr>
     </div>
     <div id="footer">
