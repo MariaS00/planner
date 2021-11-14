@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Component
 public class DbInitializer implements CommandLineRunner {
@@ -26,7 +27,7 @@ public class DbInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         User user = userRepository.save(new User("Maria"));
         Task meeting = taskRepository.save(new Task("Spotkanie",
-                Date.valueOf("2021-11-13"),
+                LocalDateTime.of(2021,11,13,15,00),
                 Priority.MEDIUM,
                 Category.WORK,
                 "O 12:00"));

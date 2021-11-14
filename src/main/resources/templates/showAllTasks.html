@@ -34,7 +34,7 @@
             <br><br>
             <td th:text="${task.getDescription()}">Description:</td>
             <br><br>
-            <td><a th:href="@{/edit/} + ${task.getTaskId()}" class="button">Edit</a></td>
+            <td><a th:href="@{/edit/} + ${task.getTaskId()}" class="button">Edit</a></td><br>
         </tr>
         <br><br>
         <input type="button" value="Add another Task" onclick="location.href='/tasks';" class="button"/>
