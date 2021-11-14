@@ -6,6 +6,9 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,8 +23,10 @@ public class Task {
     @Id
     private UUID taskId;
     private String taskTitle;
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // THH:mm
-    private Date taskDate;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd") // THH:mm
+   // @DateTimeFormat(pattern = "@code yyyy-MM-dd'T'HH:mm:ss.SSSZ") // THH:mm
+
+    private LocalDateTime taskDate;
     @Enumerated(EnumType.STRING)
     private Priority taskPriority;
     @Enumerated(EnumType.STRING)
@@ -30,8 +35,25 @@ public class Task {
 //    @ManyToOne
 //    private User user;
 
+
+    public String getTaskDateAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        if( taskDate!=null) {
+            return taskDate.format(formatter);
+
+        }
+        return null;
+    }
+
+    public void setTaskDateAsString(String value) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+
+        taskDate = LocalDateTime.parse(value, formatter);
+    }
     public Task(@NotNull String taskTitle,
-                @NonNull Date taskDate,
+                @NonNull LocalDateTime taskDate,
                 @NonNull Priority taskPriority,
                 @NonNull Category taskCategory,
                 @NonNull String description) {

@@ -14,7 +14,7 @@ public class TaskView {
 
     UUID taskId;
     String taskTitle;
-    Date taskDate;
+    LocalDateTime taskDate;
     Priority taskPriority;
     Category taskCategory;
     String description;

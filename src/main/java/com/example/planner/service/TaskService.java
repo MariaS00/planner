@@ -25,7 +25,7 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public void createTask(String title,
-                           Date taskDate,
+                           LocalDateTime taskDate,
                            Priority priority,
                            Category category,
                            String description) {
