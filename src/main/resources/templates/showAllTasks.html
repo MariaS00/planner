@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Planner</title>
-<!--    <link rel="stylesheet" href="../static.css/main.css" type="text/css">-->
+    <!--    <link rel="stylesheet" href="../static.css/main.css" type="text/css">-->
     <link rel="stylesheet" th:href="@{/main.css}" type="text/css">
 </head>
 <body>
@@ -34,9 +34,11 @@
             <br><br>
             <td th:text="${task.getDescription()}">Description:</td>
             <br><br>
-            <div class="dottedline"></div>
-        </tr><br>
-            <input type="button" value="Add another Task" onclick="location.href='/tasks';" class="button"/>
+            <td><a th:href="@{/edit/} + ${task.getTaskId()}" class="button">Edit</a></td>
+        </tr>
+        <br><br>
+        <input type="button" value="Add another Task" onclick="location.href='/tasks';" class="button"/>
+        <div class="dottedline"></div>
     </div>
     <div id="footer">
         The best Planner ever. M&A

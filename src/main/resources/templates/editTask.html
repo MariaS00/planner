@@ -11,7 +11,7 @@
         <h1 onclick="location.href='/welcome';">Planner</h1>
     </div>
     <div id="topbar">
-        <p>Edit Task: </p>
+        <p>Tasks: </p>
     </div>
     <div id="sidebar">
         <div class="optionL"><a th:href="@{/tasks}">Create task</a></div>
@@ -19,8 +19,8 @@
         <div class="optionL"><a th:href="@{/remove}">Remove task</a></div>
         <div style="clear: both;"></div>
     </div>
-    <div id="form">
-        <form th:action="@{/edit}" th:object="${tasks}" method="post">
+    <div id="content">
+        <form th:action="@{/edit/} + ${editTask.getTaskId()}" th:object="${editTask}" method="post">
             <div class="input">
                 <p>Title: <label>
                     <input type="text" th:field="*{taskTitle}">
@@ -68,11 +68,11 @@
             </div>
             <div class="dottedline"></div>
             <div class="input">
-                <p>Description <input type="text" th:field="*{description}"></p>
+                <p>Description <input type="text" th:field="*{description}"/></p>
             </div>
             <div class="dottedline"></div>
-            <input type="button" value="Add new Task" onclick="location.href='/displayAll';" class="button"/>
-            <input type="reset" value="Reset" class="button"/></p>
+            <input type="submit" value="Save"  class="button"/>
+            <input type="reset" value="Reset" class="button"/>
         </form>
     </div>
     <div id="footer">

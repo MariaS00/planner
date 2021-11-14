@@ -62,17 +62,21 @@ public class TaskController {
         return "redirect:/displayAll";
     }
 
-    @GetMapping("/edit")
-    public String editPost(Model model) {
+    @GetMapping("/edit/{taskId}")
+    public String editTask(@PathVariable UUID taskId, Model model) {
         model.addAttribute("tasks", taskService.getAllTasks());
+        Optional<Task> task1 = taskRepository.findById(taskId);
+        if (task1.isPresent()){
+            model.addAttribute("editTask",task1.get());
+        }
         return "editTask";
     }
 
-    @PutMapping("/edit/{taskTitle}")
-    public String editTaskTitle(Task task, @PathVariable String taskTitle) {
-        taskRepository.updateTaskTitle(taskTitle, task.getTaskId());
-        return "redirect:/edit";
+    @PostMapping("/edit/{taskId}")
+    public String editTask(@PathVariable UUID taskId,
+                            @ModelAttribute Task newTask) {
+        taskService.editTask(newTask);
+        return "redirect:/displayAll";
     }
-
 
 }

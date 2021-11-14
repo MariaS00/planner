@@ -48,5 +48,6 @@ public class TaskService {
         taskRepository.updatePriority(task.getTaskPriority(),task.getTaskId());
         taskRepository.updateTaskCategory(task.getTaskCategory(),task.getTaskId());
         taskRepository.updateTaskDescription(task.getDescription(),task.getTaskId());
+        taskRepository.save(task);
     }
 }
