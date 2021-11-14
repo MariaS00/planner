@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -23,15 +24,15 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     List<Task> findAllByTaskCategory(Category category);
 
-    List<Task> findAllByTaskDate(Date date);
+    List<Task> findAllByTaskDate(LocalDateTime date);
 
     List<Task> findAllByTaskPriority(Priority priority);
 
-    List<Task> findAllByTaskPriorityAndTaskDate(Priority priority, Date localDate);
+    List<Task> findAllByTaskPriorityAndTaskDate(Priority priority, LocalDateTime localDate);
 
     List<Task> findAllByDescriptionStartingWithIgnoreCase(String description);
 
-    Long countAllByTaskDate(Date date);
+    Long countAllByTaskDate(LocalDateTime date);
 
     @Query("select (count(t) > 0) from Task t where t.taskId = ?1")
     boolean taskExists(UUID taskId);
@@ -42,7 +43,7 @@ public interface TaskRepository extends JpaRepository<Task, UUID> {
 
     @Modifying
     @Query("update Task set taskDate = :newDate where taskId = :taskId")
-    int updateTaskDate(@Param("newDate") Date newDate,@Param("taskId") UUID taskId);
+    int updateTaskDate(@Param("newDate") LocalDateTime newDate,@Param("taskId") UUID taskId);
 
     @Modifying
     @Query("update Task set taskTitle = :newTitle where taskId = :taskId")

@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ class TaskRepositoryTest {
     @Test
     void shouldDelete(){
     //given
-    final var task1 = new Task("wysłac maila", Date.valueOf("2000-11-10"), Priority.HIGH, Category.APPOINTMENT, "zyczenia");
-    final var task2 = new Task("wysłahyvvtc maila", Date.valueOf("2000-11-10"), Priority.HIGH, Category.APPOINTMENT, "zyczenia");
+    final var task1 = new Task("wysłac maila", LocalDateTime.of(2021,11,15,15,00), Priority.HIGH, Category.APPOINTMENT, "zyczenia");
+    final var task2 = new Task("wysłahyvvtc maila", LocalDateTime.of(2021,11,15,15,00), Priority.HIGH, Category.APPOINTMENT, "zyczenia");
     repository.saveAllAndFlush(List.of(task1, task2));
     //when
 
@@ -43,8 +44,8 @@ class TaskRepositoryTest {
     @Test
     void shouldFindByTaskTitle(){
     //given
-    final var task1 = new Task("zrobić pranie", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "porządki");
-    final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+    final var task1 = new Task("zrobić pranie", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "porządki");
+    final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
     repository.saveAllAndFlush(List.of(task1, task2));
     //when
 
@@ -60,8 +61,8 @@ class TaskRepositoryTest {
     void shouldFindAllByTaskCategory(){
 
     //given
-    final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-    final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+    final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+    final var task2 = new Task("prrralka", LocalDateTime.of(2011,10,15,9,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
     repository.saveAllAndFlush(List.of(task1, task2));
     //when
@@ -78,13 +79,13 @@ class TaskRepositoryTest {
     void shouldFindAllByTaskDate(){
 
     //given
-    final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-    final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+    final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2019,11,10,11,10), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+    final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,13,30), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
     repository.saveAllAndFlush(List.of(task1, task2));
     //when
 
-    final var result = repository.findAllByTaskDate(Date.valueOf("2010-09-09"));
+    final var result = repository.findAllByTaskDate(LocalDateTime.of(2021,11,15,13,30));
 
     //then
     assertEquals(List.of(task2), result);
@@ -95,8 +96,8 @@ class TaskRepositoryTest {
 
     //given
 
-    final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-    final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+    final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+    final var task2 = new Task("prrralka", LocalDateTime.of(2019,1,15,1,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
     repository.saveAllAndFlush(List.of(task1, task2));
     //when
@@ -113,13 +114,13 @@ class TaskRepositoryTest {
 
         //given
 
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2020,11,1,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
         //when
 
-        final var result = repository.findAllByTaskPriorityAndTaskDate(Priority.LOW,Date.valueOf("2022-09-09"));
+        final var result = repository.findAllByTaskPriorityAndTaskDate(Priority.LOW,LocalDateTime.of(2020,11,1,15,00));
 
         //then
         assertEquals(List.of(task1), result);
@@ -130,8 +131,8 @@ class TaskRepositoryTest {
 
         //given
 
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2020,10,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
         //when
@@ -148,15 +149,15 @@ class TaskRepositoryTest {
 
         //given
 
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
-        final var task3 = new Task("paaaaaa", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2019,5,15,12,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task3 = new Task("paaaaaa", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2, task3));
         //when
 
 
-        final var result = repository.countAllByTaskDate(Date.valueOf("2010-09-09"));
+        final var result = repository.countAllByTaskDate(LocalDateTime.of(2021,11,15,15,00));
 
         //then
         assertEquals(2,result);
@@ -166,8 +167,8 @@ class TaskRepositoryTest {
     void ifTaskExists(){
 
     //given
-    final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-    final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+    final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+    final var task2 = new Task("prrralka", LocalDateTime.of(2025,1,15,15,12), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
     repository.saveAllAndFlush(List.of(task1, task2));
 
@@ -185,8 +186,8 @@ class TaskRepositoryTest {
     void shouldUpdatePriority(){
 
         //given
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2020,11,30,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
 
@@ -204,14 +205,14 @@ class TaskRepositoryTest {
     void shouldUpdateTaskDate(){
 
         //given
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2001,12,15,13,05), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
 
         //when
 
-        final int result = repository.updateTaskDate(Date.valueOf("2022-10-10"), task2.getTaskId());
+        final int result = repository.updateTaskDate(LocalDateTime.of(2021,11,15,15,00), task2.getTaskId());
 
         //then
         assertEquals(1, result);
@@ -221,8 +222,8 @@ class TaskRepositoryTest {
     void shouldUpdateTaskTitle(){
 
         //given
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
 
@@ -238,8 +239,8 @@ class TaskRepositoryTest {
     void shouldUpdateTaskDescription(){
 
         //given
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2021,11,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
 
@@ -256,8 +257,8 @@ class TaskRepositoryTest {
     void shouldUpdateTaskCategory(){
 
         //given
-        final var task1 = new Task("spacer z koleżanką", Date.valueOf("2022-09-09"), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
-        final var task2 = new Task("prrralka", Date.valueOf("2010-09-09"), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
+        final var task1 = new Task("spacer z koleżanką", LocalDateTime.of(2011,1,15,15,00), Priority.LOW, Category.SOCIAL_LIFE, "wyjście na Pietryne");
+        final var task2 = new Task("prrralka", LocalDateTime.of(2021,11,15,15,00), Priority.MEDIUM, Category.WORK, "świąteczne porządki");
 
         repository.saveAllAndFlush(List.of(task1, task2));
 
