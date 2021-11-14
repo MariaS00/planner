@@ -23,13 +23,15 @@
         <form th:action="@{/edit/} + ${editTask.getTaskId()}" th:object="${editTask}" method="post">
             <div class="input">
                 <p>Title: <label>
-                    <input type="text" th:field="*{taskTitle}">
+                    <input type="text" th:field="*{taskTitle}" pattern=".{2,}" placeholder=" " required
+                           oninvalid="setCustomValidity('Proszę wypełnić pole!')" oninput="setCustomValidity('')">
                 </label></p>
             </div>
             <div class="dottedline"></div>
             <div class="input">
                 <p>Date: <label>
-                    <input type="datetime-local" th:field="*{taskDateAsString}">
+                    <input type="datetime-local" th:field="*{taskDateAsString}" placeholder=" " required
+                           oninvalid="setCustomValidity('Proszę wypełnić pole!')" oninput="setCustomValidity('')">
                 </label></p>
             </div>
             <div class="dottedline"></div>
@@ -69,7 +71,8 @@
             </div>
             <div class="dottedline"></div>
             <div class="input">
-                <p>Description <input type="text" th:field="*{description}"/></p>
+                <p>Description <input type="text" th:field="*{description}" pattern=".{2,}" placeholder=" " required
+                                      oninvalid="setCustomValidity('Proszę wypełnić pole!')" oninput="setCustomValidity('')"/></p>
             </div>
             <div class="dottedline"></div>
             <input type="submit" value="Save"  class="button"/>

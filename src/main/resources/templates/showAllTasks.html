@@ -22,17 +22,17 @@
     </div>
     <div id="content">
         <tr th:action="@{/displayAll}" th:each="task: ${tasks}" th:method="post">
-            <td th:text="${task.taskTitle}">Title:</td>
+            Title: <td th:text="${task.taskTitle}"></td>
             <br><br>
-            <td th:text="${task.getTaskId()}">Id:</td>
+            Id: <td th:text="${task.getTaskId()}"></td>
             <br><br>
-            <td th:text="${task.getTaskDate()}">Task date:</td>
+            Task date: <td th:text="${task.getTaskDate()}"></td>
             <br><br>
-            <td th:text="${task.getTaskPriority()}">Task Priority:</td>
+            Task Priority: <td th:text="${task.getTaskPriority()}"></td>
             <br><br>
-            <td th:text="${task.getTaskCategory()}">Task Category:</td>
+            Task Category: <td th:text="${task.getTaskCategory()}"></td>
             <br><br>
-            <td th:text="${task.getDescription()}">Description:</td>
+            Description: <td th:text="${task.getDescription()}"></td>
             <br><br>
             <td><a th:href="@{/edit/} + ${task.getTaskId()}" class="button">Edit</a></td><br><br>
         <div class="dottedline"></div>

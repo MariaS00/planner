@@ -23,18 +23,20 @@
         <form th:action="@{/add-task}" th:object="${newTask}" method="post">
             <div class="input">
                 <p>Title: <label>
-                    <input type="text" th:field="*{taskTitle}">
+                    <input type="text" th:field="*{taskTitle}" pattern=".{2,}" placeholder=" " required
+                           oninvalid="setCustomValidity('Proszę wypełnić pole!')" oninput="setCustomValidity('')">
                 </label></p>
             </div>
             <div class="dottedline"></div>
             <div class="input">
                 <p>Date: <label>
-                    <input type="datetime-local" th:field="*{taskDateAsString}">
+                    <input type="datetime-local" th:field="*{taskDateAsString}" placeholder=" " required
+                           oninvalid="setCustomValidity('Proszę wypełnić pole!')" oninput="setCustomValidity('')">
                 </label></p>
             </div>
             <div class="dottedline"></div>
             <div class="input">
-                <p>Priority <br>
+                <p>Priority: <br>
                     <input type="radio" id="low" name="priority" value="LOW" th:field="*{taskPriority}">
                     <label for="low">LOW</label><br>
                     <input type="radio" id="medium" name="priority" value="MEDIUM" th:field="*{taskPriority}">
@@ -45,7 +47,7 @@
             </div>
             <div class="dottedline"></div>
             <div class="input">
-                <p>Category <br>
+                <p>Category: <br>
                     <input type="radio" id="work" name="category" value="WORK" th:field="*{taskCategory}">
                     <label for="work">WORK</label><br>
 
@@ -68,10 +70,12 @@
             </div>
             <div class="dottedline"></div>
             <div class="input">
-                <p>Description <input type="text" th:field="*{description}"></p>
+                <p>Description: <input type="text" th:field="*{description}" pattern=".{2,}" placeholder=" " required
+                                       oninvalid="setCustomValidity('Proszę wypełnić pole!')"
+                                       oninput="setCustomValidity('')"></p>
             </div>
             <div class="dottedline"></div>
-            <input type="submit" value="Add new Task"  class="button"/>
+            <input type="submit" value="Add new Task" class="button"/>
             <input type="reset" value="Reset" class="button"/></p>
         </form>
     </div>

@@ -21,18 +21,17 @@
     </div>
     <div id="content">
         <tr th:action="@{/remove}" th:each="task: ${tasks}" th:method="post">
-            <td th:text="${task.taskTitle}">Title:</td>
+            Title: <td th:text="${task.taskTitle}"></td>
             <br><br>
-            <td th:text="${task.getTaskId()}">Id:</td>
+            Id: <td th:text="${task.getTaskId()}"></td>
             <br><br>
-            <td th:text="${task.getTaskDate()}">Task date:</td>
+            Task date: <td th:text="${task.getTaskDate()}"></td>
             <br><br>
-            <td th:text="${task.getTaskPriority()}">Task Priority:</td>
+            Task Priority: <td th:text="${task.getTaskPriority()}"></td>
             <br><br>
-            <td th:text="${task.getTaskCategory()}">Task Category:</td>
+            Task Category: <td th:text="${task.getTaskCategory()}"></td>
             <br><br>
-            <td th:text="${task.getDescription()}">Description:</td>
-            <br><br>
+            Description: <td th:text="${task.getDescription()}"></td><br> <br>
             <form method="post" th:action="@{/remove/} + ${task.getTaskId}">
                 <input type="submit" value="Remove" class="button"/><br><br>
             </form>
